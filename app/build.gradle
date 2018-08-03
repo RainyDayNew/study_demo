@@ -1,0 +1,84 @@
+apply plugin: 'com.android.application'
+//添加 com.sensorsdata.analytics.android 插件
+apply plugin: 'com.sensorsdata.analytics.android'
+
+apply plugin: 'com.mob.sdk'
+
+android {
+
+
+    signingConfigs {
+        StudyDemo {
+            keyAlias 'demokey'
+            storeFile file('E:/study/study_demo/study_demo.jks')
+            storePassword '123123'
+            keyPassword '123123'
+        }
+    }
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "com.demo.resetmysoul.study_demo"
+        minSdkVersion 17
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    dataBinding {
+        enabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.StudyDemo
+            //添加此行代码，可以在release包下打印log
+            debuggable true
+        }
+        debug {
+            signingConfig signingConfigs.StudyDemo
+        }
+    }
+}
+
+
+MobSDK {
+    appKey "24a92f2ba6535"
+    appSecret "94c60e054eda4766b775405eeb5f25f0"
+
+    ShareSDK {
+        //平台配置信息
+        devInfo {
+
+            Facebook {
+                id 1
+                sortId 1
+                appKey "380680712407112"
+                appSecret "8364f9ee60800c0ae0ec084b88c60d9f"
+                shareByAppClient true
+                enable true
+            }
+
+            WhatsApp {
+                id 2
+                sortId 2
+                enable true
+            }
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    //添加 Sensors Analytics SDK 依赖
+    compile 'com.sensorsdata.analytics.android:SensorsAnalyticsSDK:1.9.0'
+    compile "com.android.support:appcompat-v7:$supportLibVersion"
+    compile "com.android.support:support-v13:$supportLibVersion"
+    compile "com.android.support:design:$supportLibVersion"
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation 'com.android.support:gridlayout-v7:26.1.0'
+}

@@ -1,0 +1,57 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    
+    repositories {
+        google()
+        jcenter()
+
+        //添加 Sensors Analytics maven 库地址
+        maven {
+            url 'https://dl.bintray.com/zouyuhan/maven'
+        }
+
+
+        //sharesdk 分享
+        maven { url "http://mvn.mob.com/android" }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.0.0'
+
+        //添加 Sensors Analytics android-gradle-plugin 依赖
+        classpath 'com.sensorsdata.analytics.android:android-gradle-plugin2:1.0.3'
+
+        classpath 'com.mob.sdk:MobSDK:+'
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+
+    ext {
+        versionCode = 1
+        versionName = '0.0.1'
+        /*versionCode = 34
+        versionName = '2.2'*/
+        compileSdk = 26
+        buildToolsValue = '26.0.2'
+        supportLibVersion = "26.1.0" //25.3.1  26.1.0
+        gmsVersion = '11.0.2'
+
+        okhttpVersion = "3.0.1"
+        retrofitVersion = "2.1.0"
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        //添加 Sensors Analytics maven 库地址
+        maven {
+            url 'https://dl.bintray.com/zouyuhan/maven'
+        }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
